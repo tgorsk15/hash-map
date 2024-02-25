@@ -1,10 +1,7 @@
-console.log("Why are we still here?");
-console.log("Yes");
+import { hashMap } from './hash-map'
 
-function templateStarter() {
-  console.log("is Prettier working?");
-}
 
-function newList() {
-  console.log("yay");
-}
+
+const testRun = hashMap();
+
+testRun.createHash('Fred', 16);
