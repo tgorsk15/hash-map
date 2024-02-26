@@ -9,4 +9,6 @@ const testRun = hashMap();
 testRun.addToMap('Fred', 'Smith');
 testRun.addToMap('Tully', 'McMuster');
 
+testRun.addToMap('Tully', 'McMusterzzz');
+
 

@@ -31,10 +31,20 @@ export const hashMap = function() {
         }
 
 
-        // if (bucketStorage[index] )
-        bucketStorage[index] = {key: val};
-        console.log(bucketStorage);
-        console.log(bucketStorage[1]);
+        if (bucketStorage[index] === undefined ) {
+            console.log(key);
+
+            const obj = {};
+            obj[key] = val;
+            bucketStorage[index] = obj;
+            console.log(bucketStorage);
+        } else if (bucketStorage[index].hasOwnProperty(key)) {
+            console.log('duplicate');
+            // this conditional statement is not working currently
+        }
+        // console.log(bucketStorage)
+        
+    
 
     }
 
