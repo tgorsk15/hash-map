@@ -55,11 +55,12 @@ export const hashMap = function() {
 
             bucketStorage[index] = head;
             console.log(bucketStorage);
-            console.log(length);
+            // console.log(length);
             
         } else if (bucketStorage[index] !== undefined) {
 
             head = bucketStorage[index];
+            tail = bucketStorage[index];
             let pointer = head;
 
             length = 1;
@@ -98,16 +99,51 @@ export const hashMap = function() {
 
     }
 
+    function get(key) {
+        const index = createHash(key);
+        console.log(index);
+
+        if (!bucketStorage[index]) {
+            console.log(null);
+            return null
+        };
+
+        const head = bucketStorage[index];
+        let pointer = head
+
+        while (pointer !== null) {
+            if (pointer.key === key) {
+                console.log(pointer.value);
+                return pointer.value
+            }
+            pointer = pointer.nextNode;
+        }
+        console.log(null);
+        return null
+        
+
+    }
+
+    function has(key) {
+        // const index = createHash(key);
+        // console.log(index);
+
+        // if (!bucketStorage[index]) {
+        //     console.log(false);
+        //     return false
+        // };
+
+        // let pointer = bucketStorage[index];
+        console.log(Boolean(get(key)))
+        return Boolean(get(key));
+    }
 
 
     return {
         createHash,
-        addToMap
+        addToMap,
+        get,
+        has
     }
 } 
 
-// else if (bucketStorage[index] === key1) {
-//             console.log('duplicate');
-//             // this conditional statement is not working currently
-
-//         } 
