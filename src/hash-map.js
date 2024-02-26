@@ -32,8 +32,8 @@ export const hashMap = function() {
     };
 
 
-    function addToMap(key, val){
-        const index = createHash(key);
+    function addToMap(key1, val){
+        const index = createHash(key1);
         console.log(index);
 
         if (index < 0 || index >= maxBuckets) {
@@ -46,9 +46,9 @@ export const hashMap = function() {
         let length = 0;
 
         if (bucketStorage[index] === undefined ) {
-            console.log(key);
+            console.log(key1);
 
-            const newNode = new Node(key, val)
+            const newNode = new Node(key1, val)
             console.log(newNode);
             head = newNode;
             length += 1;
@@ -57,28 +57,37 @@ export const hashMap = function() {
             console.log(bucketStorage);
             console.log(length);
             
-        } else if (bucketStorage[index].hasOwnProperty(key)) {
-            console.log('duplicate');
-            // this conditional statement is not working currently
-
         } else if (bucketStorage[index] !== undefined) {
+
             head = bucketStorage[index];
-            const newNode = new Node(key, val);
             let pointer = head;
+
             length = 1;
             console.log(pointer);
+            // does a check to see if key already exists:
+            if (pointer.key === key1) {
+                    console.log('duplicate');
+                    pointer.value = val;
+                    console.log(pointer)
+                    return
+                }
 
             while (pointer.nextNode !== null) {
                 length += 1;
                 pointer = pointer.nextNode;
                 // console.log(pointer)
             };
+            const newNode = new Node(key1, val);
+
             pointer.nextNode = newNode;
             console.log(pointer)
+
             tail = newNode;
             console.log(tail);
+
             length += 1;
             console.log(length);
+
             console.log(bucketStorage)
             return pointer
 
@@ -95,4 +104,10 @@ export const hashMap = function() {
         createHash,
         addToMap
     }
-}
+} 
+
+// else if (bucketStorage[index] === key1) {
+//             console.log('duplicate');
+//             // this conditional statement is not working currently
+
+//         } 
