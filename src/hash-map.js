@@ -53,8 +53,6 @@ export const hashMap = function() {
             head = newNode;
             length += 1;
 
-            // const obj = {};
-            // obj[key] = val;
             bucketStorage[index] = head;
             console.log(bucketStorage);
             console.log(length);
@@ -67,6 +65,7 @@ export const hashMap = function() {
             head = bucketStorage[index];
             const newNode = new Node(key, val);
             let pointer = head;
+            length = 1;
             console.log(pointer);
 
             while (pointer.nextNode !== null) {
@@ -80,10 +79,12 @@ export const hashMap = function() {
             console.log(tail);
             length += 1;
             console.log(length);
+            console.log(bucketStorage)
+            return pointer
 
         }
-        // console.log(bucketStorage)
-        
+
+        return {head, tail, length}
     
 
     }
