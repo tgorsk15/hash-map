@@ -149,12 +149,8 @@ export const hashMap = function() {
             console.log(head);
             bucketStorage[index] = head.nextNode;
 
-            // const deleteIndex = keysArray.indexOf(key)
-            // keysArray.splice(deleteIndex, 1);
-
             console.log('key removed');
             console.log(bucketStorage);
-            // console.log(keysArray);
             length -= 1;
             return true
         }
@@ -167,14 +163,9 @@ export const hashMap = function() {
                 pointer.nextNode = null;
                 pointer.nextNode = newNextNode;
 
-                // const deleteIndex = keysArray.indexOf(key)
-                // console.log(deleteIndex);
-                // keysArray.splice(deleteIndex, 1);
-
                 length -= 1;
                 console.log('key removed');
                 console.log(bucketStorage);
-                // console.log(keysArray);
                 return true
             }
             pointer = pointer.nextNode
@@ -213,6 +204,39 @@ export const hashMap = function() {
         return keysArray
     }
 
+    function values() {
+        const valuesArray = [];
+
+        for (let i = 0; i < maxBuckets; i++) {
+            let pointer = bucketStorage[i];
+            if (bucketStorage[i]) {
+                while (pointer !== null) {
+                    valuesArray.push(pointer.value);
+                    pointer = pointer.nextNode;
+                }
+            }
+        }
+        console.log(valuesArray);
+        return valuesArray
+    }
+
+    function entries() {
+        const entriesArray = [];
+
+        for (let i = 0; i < maxBuckets; i++) {
+            let pointer = bucketStorage[i];
+            if (bucketStorage[i]) {
+                while (pointer !== null) {
+                    entriesArray.push([pointer.key, pointer.value]);
+                    pointer = pointer.nextNode;
+                }
+            }
+        }
+        console.log(entriesArray);
+        return entriesArray
+
+    }
+
 
     return {
         createHash,
@@ -222,7 +246,9 @@ export const hashMap = function() {
         removeKey,
         getLength,
         clear,
-        keys
+        keys,
+        values,
+        entries
     }
 } 
 

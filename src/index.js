@@ -29,7 +29,10 @@ testRun.addToMap('Remus', 'Lupin');
 testRun.addToMap('Neville', 'Longbottom')
 testRun.addToMap('Tom', 'Riddle');
 testRun.addToMap('Mad eye', 'Moody');
-testRun.addToMap('Lucius Malfoy');
+testRun.addToMap('Lucius', 'Malfoy');
+
+// testRun.keys();
+
 testRun.addToMap('Severus', 'Snape');
 testRun.addToMap('Viktor', 'Krumb');
 testRun.addToMap('Luna', 'Lovegood');
@@ -52,7 +55,6 @@ testRun.has('Carlos')
 
 
 testRun.removeKey('Moaning');
-// testRun.removeKey('Lucifer')
 testRun.getLength();
 
 // testRun.clear();
@@ -60,3 +62,5 @@ testRun.getLength();
 // testRun.get('Salazar');
 
 testRun.keys();
+testRun.values();
+testRun.entries();
