@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-
 // create a Node class for individual Linked Lists
 class Node {
     constructor (key, value, nextNode = null) {
@@ -12,9 +11,29 @@ class Node {
 
 
 export const hashMap = function() {
-    const maxBuckets = 16;
+    let maxBuckets = 16;
+    const expandThreshold = 0.75;
     const bucketStorage = [];
     let length = 0;
+
+    // const keysArray = [];
+
+
+    function expandChecker() {
+        let bucketsFilled = 0;
+        for (let i =0; i < maxBuckets; i++) {
+            if (bucketStorage[i] ) {
+                bucketsFilled += 1;
+            };
+        }
+        console.log(bucketsFilled);
+        const fillRatio = bucketsFilled / maxBuckets;
+        console.log(fillRatio);
+        if (fillRatio >= expandThreshold) {
+            console.log('expand buckets!!!')
+            maxBuckets *= 2;
+        }
+    }
 
 
     function createHash(key) {
@@ -33,6 +52,7 @@ export const hashMap = function() {
 
 
     function addToMap(key1, val){
+        expandChecker();
         const index = createHash(key1);
         console.log(index);
 
@@ -42,13 +62,15 @@ export const hashMap = function() {
 
         // create a linkedList
         let head = null;
-        let tail = null;
+        const tail = null;
 
         if (bucketStorage[index] === undefined ) {
             console.log(key1);
 
             const newNode = new Node(key1, val)
             console.log(newNode);
+            // keysArray.push(newNode);
+
             head = newNode;
             length += 1;
 
@@ -58,15 +80,13 @@ export const hashMap = function() {
         } else if (bucketStorage[index] !== undefined) {
 
             head = bucketStorage[index];
-            tail = bucketStorage[index];
             let pointer = head;
 
-            console.log(pointer);
             // does a check to see if key already exists:
             if (pointer.key === key1) {
                     console.log('duplicate');
                     pointer.value = val;
-                    console.log(pointer)
+                    console.log(pointer);
                     return
                 }
 
@@ -75,15 +95,11 @@ export const hashMap = function() {
 
             };
             const newNode = new Node(key1, val);
+            // keysArray.push(newNode);
 
+            console.log(pointer);
             pointer.nextNode = newNode;
-            console.log(pointer)
-
-            tail = newNode;
-            console.log(tail);
-
             length += 1;
-            console.log(length);
 
             console.log(bucketStorage)
             return {pointer, length}
@@ -132,8 +148,13 @@ export const hashMap = function() {
         if (head.key === key) {
             console.log(head);
             bucketStorage[index] = head.nextNode;
+
+            // const deleteIndex = keysArray.indexOf(key)
+            // keysArray.splice(deleteIndex, 1);
+
             console.log('key removed');
             console.log(bucketStorage);
+            // console.log(keysArray);
             length -= 1;
             return true
         }
@@ -145,9 +166,15 @@ export const hashMap = function() {
                 newNextNode = pointer.nextNode.nextNode;
                 pointer.nextNode = null;
                 pointer.nextNode = newNextNode;
+
+                // const deleteIndex = keysArray.indexOf(key)
+                // console.log(deleteIndex);
+                // keysArray.splice(deleteIndex, 1);
+
                 length -= 1;
                 console.log('key removed');
                 console.log(bucketStorage);
+                // console.log(keysArray);
                 return true
             }
             pointer = pointer.nextNode
@@ -162,6 +189,30 @@ export const hashMap = function() {
 
     }
 
+    function clear() {
+        for (let i = 0; i < maxBuckets; i++) {
+            bucketStorage[i] = null
+        }
+        console.log(bucketStorage);
+        console.log('cleared');
+    }
+
+    function keys() {
+        const keysArray = [];
+
+        for (let i = 0; i < maxBuckets; i++) {
+            let pointer = bucketStorage[i];
+            if (bucketStorage[i]) {
+                while (pointer !== null) {
+                    keysArray.push(pointer.key);
+                    pointer = pointer.nextNode;
+                }
+            }
+        }
+        console.log(keysArray);
+        return keysArray
+    }
+
 
     return {
         createHash,
@@ -169,7 +220,9 @@ export const hashMap = function() {
         get,
         has,
         removeKey,
-        getLength
+        getLength,
+        clear,
+        keys
     }
 } 
 

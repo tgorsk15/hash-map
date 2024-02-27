@@ -28,6 +28,19 @@ testRun.addToMap('Bellatrix', 'Lestrange');
 testRun.addToMap('Remus', 'Lupin');
 testRun.addToMap('Neville', 'Longbottom')
 testRun.addToMap('Tom', 'Riddle');
+testRun.addToMap('Mad eye', 'Moody');
+testRun.addToMap('Lucius Malfoy');
+testRun.addToMap('Severus', 'Snape');
+testRun.addToMap('Viktor', 'Krumb');
+testRun.addToMap('Luna', 'Lovegood');
+testRun.addToMap('Barty', 'Crouch');
+testRun.addToMap('Horace', 'Slughorn');
+testRun.addToMap('Fleur', 'Delacour');
+testRun.addToMap('Cedric', 'Diggory');
+testRun.addToMap('Seamus', 'Finnigan');
+testRun.addToMap('Gregory', 'Goyle');
+testRun.addToMap('Rubeus', 'Hagrid');
+
 
 testRun.get('Carlos');
 testRun.get('Zoey');
@@ -42,3 +55,8 @@ testRun.removeKey('Moaning');
 // testRun.removeKey('Lucifer')
 testRun.getLength();
 
+// testRun.clear();
+// testRun.get('Hermoine');
+// testRun.get('Salazar');
+
+testRun.keys();
